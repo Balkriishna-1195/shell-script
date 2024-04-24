@@ -14,3 +14,11 @@ else
     echo -e "$R plase make sure $SOuRCE_DIRECToRY exists $N"
     exit 1
 fi
+
+FILES=$(find $SOURCE_DIRECTORY -name "*.log" -mtime +14)
+
+while IFS= read -r line 
+do
+  echo "Deleting file: $line"
+  rm -rf $line
+done <<< $FILES
